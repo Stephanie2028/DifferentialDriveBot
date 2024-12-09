@@ -3,6 +3,8 @@ package robot;
 import static edu.wpi.first.units.Units.Seconds;
 import static robot.Constants.PERIOD;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -97,4 +99,20 @@ public class Robot extends CommandRobot implements Logged {
   public void close() {
     super.close();
   }
+
+
+
+public Command drive(DoubleSupplier vLeft, DoubleSupplier vRight) {
+  return run(() -> drive(vLeft.getAsDouble(), vRight.getAsDouble()));
+
+
+  
+  Drive drive = new Drive();
+
+private void configureBindings() {
+	drive.setDefaultCommand(drive.drive(driver::getLeftY, driver::getRightY));
+}
+
+}
+
 }
